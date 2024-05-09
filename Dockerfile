@@ -1,20 +1,9 @@
-FROM node:20.12.2 as build-stage
-
-ARG REACT_APP_SERVER_URL
-
-
+FROM node:20-alpine
+RUN mkdir -p /app
 WORKDIR /app
-COPY package*.json ./
-COPY package-lock.json ./
-
-COPY package.json .
-
-RUN npm install
-
 COPY . .
-
+RUN npm install
 RUN npm run build
-
 EXPOSE 8080
 
-CMD [ "npm", "run", "preview" ]
+CMD ["npm", "run", "preview"]
