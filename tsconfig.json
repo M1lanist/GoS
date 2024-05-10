@@ -35,7 +35,7 @@
       "noUnusedLocals": true, // Report errors on unused local variables.
       "noUnusedParameters": true // Report errors on unused parameters in functions
     },
-    "include": ["./**/*.ts", "./**/*.js", "./**/*.jsx"],
+    "include": ["./**/*.ts", "./**/*.js", "./**/*.jsx", "src/shared/ui/ui-sidebar"],
     "exclude": [
       "node_modules/**/*"
     ]
