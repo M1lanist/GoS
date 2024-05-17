@@ -20,7 +20,8 @@ const routes = createBrowserRouter([
   },
   {
     path: '/myprofile',
-    element: <ProfilePage />
+    element: <ProfilePage />,
+   
   },
   {
     path: '/myclass',
