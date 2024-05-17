@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import UiSidebar, { SidebarItem } from '../../shared/ui/ui-sidebar/ui-sidebar';
 import '../../app/globals.css';
-import { BarChart3, UserCircle, Home, Book, NotebookPen, CalendarCheck, LayoutDashboard, UserRound, LogOut } from 'lucide-react'; // Удалили один из импортов LayoutDashboard
+import { Milestone, UsersRound, CalendarDays, BarChart3, UserCircle, Home, Book, NotebookPen, CalendarCheck, LayoutDashboard, UserRound, LogOut } from 'lucide-react'; // Удалили один из импортов LayoutDashboard
 
 function Sidebar() {
   const [activeItem, setActiveItem] = useState(null);
@@ -12,55 +12,55 @@ function Sidebar() {
       <div>
         <UiSidebar>
           <SidebarItem
-            icon={<Home className="text-black" />} 
-            text={<Link to="/Frontend/src/pages/MainPage/index.jsx" className="no-decoration">Главная</Link>}
-            active={activeItem === 'mainpage'}
-            onClick={() => setActiveItem('mainpage')}
+            icon={<Home className="text-black" />}  
+            text={<Link to="/Frontend/src/pages/MainPage/index.jsx" className="no-decoration">Главная</Link>} 
+            active={activeItem === 'mainpage'} 
+            onClick={() => setActiveItem('mainpage')} 
           />
 
           <SidebarItem
-            icon={<Book className="text-black" />} 
-            text="Мой класс"
-            to="/"
-            active={activeItem === 'myclass'}
-            onClick={() => setActiveItem('myclass')}
+            icon={<UsersRound  className="text-black" />}  
+            text="Студенты" 
+            to="../../pages/MyClassPage" 
+            active={activeItem === 'myclass'} 
+            onClick={() => setActiveItem('myclass')} 
           />
           <SidebarItem
-            icon={<NotebookPen className="text-black" />} 
-            text="Урок"
-            to="/board"
-            active={activeItem === 'lesson'}
-            onClick={() => setActiveItem('/lesson')}
+            icon={<CalendarCheck className="text-black" />}  
+            text="Учебные материалы" 
+            to="../../pages/LecturesPage/index.jsx" 
+            active={activeItem === 'materials'} 
+            onClick={() => setActiveItem('materials')} 
           />
           <SidebarItem
-            icon={<CalendarCheck className="text-black" />} 
-            text="Расписание"
-            to="/schedule"
-            active={activeItem === 'schedule'}
-            onClick={() => setActiveItem('schedule')}
+            icon={<CalendarDays className="text-black" />}  
+            text="Расписание" 
+            to="../../pages/SchedulePage/index.jsx" 
+            active={activeItem === 'schedule'} 
+            onClick={() => setActiveItem('schedule')} 
           />
           <SidebarItem
-            icon={<LayoutDashboard className="text-black" />} 
-            text="Лекции"
-            to="/lectures"
-            active={activeItem === 'lectures'}
-            onClick={() => setActiveItem('lectures')}
+            icon={<Milestone  className="text-black" />}  
+            text="Урок" 
+            to="../../pages/BoardPage" 
+            active={activeItem === 'lectures'} 
+            onClick={() => setActiveItem('lectures')} 
           />
-          <div style={{ marginTop: '30px' }}>
+          <div style={{ marginTop: '80px' }}> {/* Дополнительный отступ между кнопками */}
             <SidebarItem
-              icon={<UserRound className="text-black" />} 
-              text="Профиль"
-              to="/myprofile"
-              active={activeItem === 'profile'}
-              onClick={() => setActiveItem('profile')}
+              icon={<UserRound className="text-black" />}  
+              text="Профиль" 
+              to="../../pages/ProfilePage" 
+              active={activeItem === 'profile'} 
+              onClick={() => setActiveItem('profile')} 
             />
           </div>
           <SidebarItem
-            icon={<LogOut className="text-black" />} 
-            text="Выйти"
-            to="/logout"
-            active={activeItem === 'logout'}
-            onClick={() => setActiveItem('logout')}
+            icon={<LogOut className="text-black" />}  
+            text="Выйти" 
+            to="../../pages/Autorization" 
+            active={activeItem === 'logout'} 
+            onClick={() => setActiveItem('logout')} 
           />
         </UiSidebar>
       </div>
