@@ -60,12 +60,13 @@
 .noLabelIconContainer{
   width: 5%;
   padding-left: 2%;
-
+  height: 54px;
 }
 
 .boldText{
   font-weight: bold;
   font-size: 18px;
+  padding: 4px;
 }
 .regularText{
   font-size: 16px;
@@ -101,5 +102,6 @@ padding: 0;
   }
   .noLabelAlertContainer{
     width: 300px;
+    height: 54px;
   }
 }
