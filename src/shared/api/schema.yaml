@@ -1,0 +1,4185 @@
+openapi: 3.0.1
+info:
+  title: SchoolGO API
+  version: v1
+paths:
+  /api/Auth/Access:
+    post:
+      tags:
+        - Auth
+      summary: Get access and refresh tokens by login and password
+      requestBody:
+        description: login and pwd
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.AuthDto.Login'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.AuthDto.Login'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.AuthDto.Login'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.AuthDto.Response'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.AuthDto.Response'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.AuthDto.Response'
+        '400':
+          description: payload error
+        '500':
+          description: 'uncaught, unknown error'
+  /api/Auth/Refresh:
+    post:
+      tags:
+        - Auth
+      summary: Get access and refresh tokens by old refresh token
+      requestBody:
+        description: old refresh token
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.AuthDto.Refresh'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.AuthDto.Refresh'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.AuthDto.Refresh'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.AuthDto.Response'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.AuthDto.Response'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.AuthDto.Response'
+        '400':
+          description: payload error
+        '500':
+          description: 'uncaught, unknown error'
+  /api/Enums/RolesTypeEnum:
+    get:
+      tags:
+        - Enums
+      summary: Get list of roles type enums
+      description: 'Roles: Allow anonymous'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BLL.Extensions.EnumResult'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BLL.Extensions.EnumResult'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BLL.Extensions.EnumResult'
+  /api/Enums/ReccurencePatternsTypeEnum:
+    get:
+      tags:
+        - Enums
+      summary: Get list of reccurence patterns type enums
+      description: 'Roles: Allow anonymous'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BLL.Extensions.EnumResult'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BLL.Extensions.EnumResult'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BLL.Extensions.EnumResult'
+  /api/FileGroups:
+    post:
+      tags:
+        - FileGroups
+      summary: Create File Group
+      requestBody:
+        description: Model of group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.FileGroupDto.Add'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.FileGroupDto.Add'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.FileGroupDto.Add'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string1944
+            application/json:
+              schema:
+                type: string
+                example: _string1945
+            text/json:
+              schema:
+                type: string
+                example: _string1946
+    put:
+      tags:
+        - FileGroups
+      summary: Edit File Group
+      requestBody:
+        description: Edit group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.FileGroupDto.Edit'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.FileGroupDto.Edit'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.FileGroupDto.Edit'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+    get:
+      tags:
+        - FileGroups
+      summary: Get all File Groups
+      parameters:
+        - name: groupId
+          in: query
+          schema:
+            type: string
+            example: _string1949
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.FileGroupDto.Get'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.FileGroupDto.Get'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.FileGroupDto.Get'
+  '/api/FileGroups/{id}':
+    get:
+      tags:
+        - FileGroups
+      summary: Get File Group by id
+      parameters:
+        - name: id
+          in: path
+          description: Id of group
+          required: true
+          schema:
+            type: string
+            example: _string1952
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.FileGroupDto.Get'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.FileGroupDto.Get'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.FileGroupDto.Get'
+    delete:
+      tags:
+        - FileGroups
+      summary: Delete File Group by id
+      parameters:
+        - name: id
+          in: path
+          description: Id of group
+          required: true
+          schema:
+            type: string
+            example: _string1953
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/FileGroups/AddFile:
+    post:
+      tags:
+        - FileGroups
+      summary: Add File to File Group
+      parameters:
+        - name: groupId
+          in: query
+          description: Id of group
+          required: true
+          schema:
+            type: string
+            example: _string1954
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  example: _string1955
+            encoding:
+              file:
+                style: form
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string1956
+            application/json:
+              schema:
+                type: string
+                example: _string1957
+            text/json:
+              schema:
+                type: string
+                example: _string1958
+  /api/FileGroups/RemoveFile:
+    delete:
+      tags:
+        - FileGroups
+      summary: Delete File from File Group
+      parameters:
+        - name: groupId
+          in: query
+          description: Id of group
+          required: true
+          schema:
+            type: string
+            example: _string1959
+        - name: fileId
+          in: query
+          description: Id of file
+          required: true
+          schema:
+            type: string
+            example: _string1960
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/Groups:
+    post:
+      tags:
+        - Groups
+      summary: Add group
+      requestBody:
+        description: model of group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.GroupDto.Add'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.GroupDto.Add'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.GroupDto.Add'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string1963
+            application/json:
+              schema:
+                type: string
+                example: _string1964
+            text/json:
+              schema:
+                type: string
+                example: _string1965
+    put:
+      tags:
+        - Groups
+      summary: Edit group
+      requestBody:
+        description: Edit groupt
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.GroupDto.Edit'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.GroupDto.Edit'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.GroupDto.Edit'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+    get:
+      tags:
+        - Groups
+      summary: Get all groups
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.GroupDto.Get'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.GroupDto.Get'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.GroupDto.Get'
+  '/api/Groups/{id}':
+    get:
+      tags:
+        - Groups
+      summary: Get group by id
+      parameters:
+        - name: id
+          in: path
+          description: id of group
+          required: true
+          schema:
+            type: string
+            example: _string1972
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.GroupDto.Get'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.GroupDto.Get'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.GroupDto.Get'
+    delete:
+      tags:
+        - Groups
+      summary: Delete group by id
+      parameters:
+        - name: id
+          in: path
+          description: id of group
+          required: true
+          schema:
+            type: string
+            example: _string1973
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/Groups/AddStudentToGroup:
+    post:
+      tags:
+        - Groups
+      summary: Add student to group
+      parameters:
+        - name: groupId
+          in: query
+          description: id of group
+          required: true
+          schema:
+            type: string
+            example: _string1974
+        - name: studentId
+          in: query
+          description: id of student
+          required: true
+          schema:
+            type: string
+            example: _string1975
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string1976
+            application/json:
+              schema:
+                type: string
+                example: _string1977
+            text/json:
+              schema:
+                type: string
+                example: _string1978
+  /api/Groups/RemoveStudentFromGroup:
+    delete:
+      tags:
+        - Groups
+      summary: Delete student from group
+      parameters:
+        - name: groupId
+          in: query
+          description: id of group
+          required: true
+          schema:
+            type: string
+            example: _string1979
+        - name: studentId
+          in: query
+          description: id of student
+          required: true
+          schema:
+            type: string
+            example: _string1980
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/Groups/GetAllStudentsFromGroup:
+    get:
+      tags:
+        - Groups
+      summary: Get all students from group
+      parameters:
+        - name: groupId
+          in: query
+          description: id of group
+          schema:
+            type: string
+            example: _string1981
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+  /api/Meetings:
+    post:
+      tags:
+        - Meetings
+      summary: Add meeting
+      requestBody:
+        description: model of meeting
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.MeetingDto.Add'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.MeetingDto.Add'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.MeetingDto.Add'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string1989
+            application/json:
+              schema:
+                type: string
+                example: _string1990
+            text/json:
+              schema:
+                type: string
+                example: _string1991
+    put:
+      tags:
+        - Meetings
+      summary: Edit meeting
+      requestBody:
+        description: Edit meeting
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.MeetingDto.Edit'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.MeetingDto.Edit'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.MeetingDto.Edit'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+    get:
+      tags:
+        - Meetings
+      summary: Get all meetings
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.MeetingDto.Get'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.MeetingDto.Get'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.MeetingDto.Get'
+  '/api/Meetings/{id}':
+    get:
+      tags:
+        - Meetings
+      summary: Get meeting by id
+      parameters:
+        - name: id
+          in: path
+          description: id of meeting
+          required: true
+          schema:
+            type: string
+            example: _string2000
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.MeetingDto.Get'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.MeetingDto.Get'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.MeetingDto.Get'
+    delete:
+      tags:
+        - Meetings
+      summary: Delete meeting by id
+      parameters:
+        - name: id
+          in: path
+          description: id of meeting
+          required: true
+          schema:
+            type: string
+            example: _string2001
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/Meetings/AddStudentToMeeting:
+    post:
+      tags:
+        - Meetings
+      summary: Add student to meeting
+      parameters:
+        - name: meetingId
+          in: query
+          description: id of meeting
+          required: true
+          schema:
+            type: string
+            example: _string2002
+        - name: studentId
+          in: query
+          description: id of student
+          required: true
+          schema:
+            type: string
+            example: _string2003
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string2004
+            application/json:
+              schema:
+                type: string
+                example: _string2005
+            text/json:
+              schema:
+                type: string
+                example: _string2006
+  /api/Meetings/RemoveStudentFromMeeting:
+    delete:
+      tags:
+        - Meetings
+      summary: Delete student from meeting
+      parameters:
+        - name: meetingId
+          in: query
+          description: id of meeting
+          required: true
+          schema:
+            type: string
+            example: _string2007
+        - name: studentId
+          in: query
+          description: id of student
+          required: true
+          schema:
+            type: string
+            example: _string2008
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/Meetings/GetAllStudentsFromMeeting:
+    get:
+      tags:
+        - Meetings
+      summary: Get all students from meeting
+      parameters:
+        - name: meetingId
+          in: query
+          description: id of meeting
+          schema:
+            type: string
+            example: _string2009
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+  /api/Register/RegisterTrainer:
+    post:
+      tags:
+        - Register
+      summary: Register a new trainer
+      requestBody:
+        description: The trainer registration data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.RegisterDto.AddTrainer'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.RegisterDto.AddTrainer'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.RegisterDto.AddTrainer'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string2016
+            application/json:
+              schema:
+                type: string
+                example: _string2017
+            text/json:
+              schema:
+                type: string
+                example: _string2018
+  /api/Register/ApproveTrainer:
+    post:
+      tags:
+        - Register
+      summary: Approve trainer
+      parameters:
+        - name: trainerId
+          in: query
+          description: Id of trainer
+          required: true
+          schema:
+            type: string
+            example: _string2019
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+  /api/Students:
+    post:
+      tags:
+        - Students
+      summary: Add student
+      requestBody:
+        description: model of student
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.StudentDto.Add'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.StudentDto.Add'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.StudentDto.Add'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string2023
+            application/json:
+              schema:
+                type: string
+                example: _string2024
+            text/json:
+              schema:
+                type: string
+                example: _string2025
+    put:
+      tags:
+        - Students
+      summary: Edit student
+      requestBody:
+        description: Edit student
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.StudentDto.Edit'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.StudentDto.Edit'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.StudentDto.Edit'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+    get:
+      tags:
+        - Students
+      summary: Get all students
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.StudentDto.Get'
+  '/api/Students/{id}':
+    get:
+      tags:
+        - Students
+      summary: Get student by id
+      parameters:
+        - name: id
+          in: path
+          description: id of student
+          required: true
+          schema:
+            type: string
+            example: _string2030
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.StudentDto.Get'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.StudentDto.Get'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.StudentDto.Get'
+    delete:
+      tags:
+        - Students
+      summary: Delete student by id
+      parameters:
+        - name: id
+          in: path
+          description: id of student
+          required: true
+          schema:
+            type: string
+            example: _string2031
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  '/api/Trainers/{id}':
+    get:
+      tags:
+        - Trainers
+      summary: Get Trainer by id
+      parameters:
+        - name: id
+          in: path
+          description: id of Trainer
+          required: true
+          schema:
+            type: string
+            example: _string2032
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.TrainerDto.Get'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.TrainerDto.Get'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.TrainerDto.Get'
+    delete:
+      tags:
+        - Trainers
+      summary: Delete Trainer by id
+      parameters:
+        - name: id
+          in: path
+          description: id of Trainer
+          required: true
+          schema:
+            type: string
+            example: _string2040
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/Trainers:
+    put:
+      tags:
+        - Trainers
+      summary: Edit Trainer
+      requestBody:
+        description: Edit trainer
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.TrainerDto.Edit'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.TrainerDto.Edit'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.TrainerDto.Edit'
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+    get:
+      tags:
+        - Trainers
+      summary: Get all Trainers
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.TrainerDto.Get'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.TrainerDto.Get'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.TrainerDto.Get'
+  /api/UsersAccount/ForgotPassword:
+    post:
+      tags:
+        - UsersAccount
+      summary: Forgot Password
+      parameters:
+        - name: email
+          in: query
+          description: user's email
+          required: true
+          schema:
+            type: string
+            example: _string2048
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+  /api/UsersAccount/ResetPassword:
+    post:
+      tags:
+        - UsersAccount
+      summary: Reset Password
+      parameters:
+        - name: token
+          in: query
+          description: token to reset password
+          required: true
+          schema:
+            type: string
+            example: _string2049
+        - name: password
+          in: query
+          description: user's password
+          required: true
+          schema:
+            type: string
+            example: _string2050
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+  /api/UsersAccount/IsResetTokenExpired:
+    post:
+      tags:
+        - UsersAccount
+      summary: IsResetTokenExpired
+      parameters:
+        - name: token
+          in: query
+          description: token to check whether it is expired or not
+          required: true
+          schema:
+            type: string
+            example: _string2051
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+  /api/UsersAccount/ChangePassword:
+    post:
+      tags:
+        - UsersAccount
+      summary: Change Password
+      parameters:
+        - name: oldPassword
+          in: query
+          description: user's old password
+          required: true
+          schema:
+            type: string
+            example: _string2052
+        - name: newPassword
+          in: query
+          description: user's new password
+          required: true
+          schema:
+            type: string
+            example: _string2053
+        - name: repeatedNewPassword
+          in: query
+          description: user's new repeated password
+          required: true
+          schema:
+            type: string
+            example: _string2054
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+  /api/VideoLectureGroups:
+    post:
+      tags:
+        - VideoLectureGroups
+      summary: Create Video Lecture Group
+      requestBody:
+        description: Model of group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Add'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Add'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Add'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: _string2056
+            application/json:
+              schema:
+                type: string
+                example: _string2057
+            text/json:
+              schema:
+                type: string
+                example: _string2058
+    put:
+      tags:
+        - VideoLectureGroups
+      summary: Edit Video Lecture Group
+      requestBody:
+        description: Edit group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Edit'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Edit'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Edit'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: Success
+    get:
+      tags:
+        - VideoLectureGroups
+      summary: Get all Video Lecture Groups
+      parameters:
+        - name: groupId
+          in: query
+          schema:
+            type: string
+            example: _string2061
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Get'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Get'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Get'
+  '/api/VideoLectureGroups/{id}':
+    get:
+      tags:
+        - VideoLectureGroups
+      summary: Get Video Lecture Group by id
+      parameters:
+        - name: id
+          in: path
+          description: Id of group
+          required: true
+          schema:
+            type: string
+            example: _string2064
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Get'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Get'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.VideoLectureGroupDto.Get'
+    delete:
+      tags:
+        - VideoLectureGroups
+      summary: Delete Video Lecture Group by id
+      parameters:
+        - name: id
+          in: path
+          description: Id of group
+          required: true
+          schema:
+            type: string
+            example: _string2065
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/VideoLectureGroups/AddVideoLecture:
+    patch:
+      tags:
+        - VideoLectureGroups
+      summary: Add Video Lecture to Video Lecture Group
+      parameters:
+        - name: groupId
+          in: query
+          description: Id of group
+          required: true
+          schema:
+            type: string
+            example: _string2066
+      requestBody:
+        description: Model of videoLecture
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureDto.Add'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureDto.Add'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DTO.VideoLectureDto.Add'
+        required: true
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+  /api/VideoLectureGroups/RemoveVideoLecture:
+    delete:
+      tags:
+        - VideoLectureGroups
+      summary: Delete Video Lecture from Video Lecture Group
+      parameters:
+        - name: groupId
+          in: query
+          description: Id of group
+          required: true
+          schema:
+            type: string
+            example: _string2069
+        - name: videoLectureId
+          in: query
+          description: Id of videoLecture
+          required: true
+          schema:
+            type: string
+            example: _string2070
+      responses:
+        '400':
+          description: Error in model data
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '403':
+          description: Access denied
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '500':
+          description: 'Uncatched, unknown error'
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DTO.Base.BadRequestDto'
+        '204':
+          description: No content
+components:
+  schemas:
+    BLL.Extensions.EnumResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        name:
+          type: string
+          nullable: true
+          example: _string1941
+        description:
+          type: string
+          nullable: true
+          example: _string1942
+      additionalProperties: false
+    Common.Enums.RecurrencePattern:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      type: integer
+      format: int32
+      example: 1
+    DTO.AuthDto.Login:
+      required:
+        - password
+        - userName
+      type: object
+      properties:
+        userName:
+          type: string
+          description: ''
+          example: _string1933
+        password:
+          type: string
+          description: ''
+          example: _string1934
+      additionalProperties: false
+      description: ''
+      example:
+        UserName: Admin
+        Password: x
+    DTO.AuthDto.Refresh:
+      required:
+        - refreshToken
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          description: ''
+          example: _string1939
+      additionalProperties: false
+      description: ''
+    DTO.AuthDto.Response:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: ''
+          nullable: true
+          example: _string1935
+        accessTokenExpireDate:
+          type: string
+          description: ''
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+        refreshToken:
+          type: string
+          description: ''
+          nullable: true
+          example: _string1936
+        refreshTokenExpireDate:
+          type: string
+          description: ''
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+        userName:
+          type: string
+          description: ''
+          nullable: true
+          example: _string1937
+        roleNames:
+          type: array
+          items:
+            type: string
+            example: _string1938
+          description: ''
+          nullable: true
+      additionalProperties: false
+      description: ''
+    DTO.Base.BadRequestDto:
+      type: object
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              example: _string1940
+          nullable: true
+        devCode:
+          type: integer
+          format: int32
+          nullable: true
+          example: 1
+      additionalProperties: false
+    DTO.FileGroupDto.Add:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 2
+          type: string
+          description: Name of the File group
+          example: _string1943
+      additionalProperties: false
+      description: Add file group
+    DTO.FileGroupDto.Edit:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 2
+          type: string
+          description: Name of the File group
+          example: _string1947
+        id:
+          type: string
+          description: Id of the file group
+          nullable: true
+          example: _string1948
+      additionalProperties: false
+      description: Edit file group
+    DTO.FileGroupDto.Get:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 2
+          type: string
+          description: Name of the File group
+          example: _string1950
+        id:
+          type: string
+          description: Id of the file group
+          nullable: true
+          example: _string1951
+      additionalProperties: false
+      description: Get file group
+    DTO.GroupDto.Add:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 64
+          type: string
+          description: Group Name
+          example: _string1961
+        description:
+          type: string
+          description: Description
+          nullable: true
+          example: _string1962
+      additionalProperties: false
+      description: Add object
+    DTO.GroupDto.Edit:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 64
+          type: string
+          description: Group Name
+          example: _string1966
+        id:
+          type: string
+          description: Identifier
+          example: _string1967
+        description:
+          type: string
+          description: Description
+          nullable: true
+          example: _string1968
+      additionalProperties: false
+      description: Edit object
+    DTO.GroupDto.Get:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifier
+          example: _string1969
+        name:
+          type: string
+          description: Name
+          nullable: true
+          example: _string1970
+        description:
+          type: string
+          description: Description
+          nullable: true
+          example: _string1971
+        createdDateTime:
+          type: string
+          description: Date of creation
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+        editedDateTime:
+          type: string
+          description: Last change date
+          format: date-time
+          nullable: true
+          example: '2024-05-23T07:11:19Z'
+      additionalProperties: false
+      description: Get object
+    DTO.MeetingDto.Add:
+      required:
+        - endTime
+        - startTime
+        - title
+      type: object
+      properties:
+        title:
+          maxLength: 100
+          type: string
+          description: Meeting title
+          example: _string1986
+        startTime:
+          type: string
+          description: Starting time of the meeting
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+        endTime:
+          type: string
+          description: Ending time of the meeting.
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+        recurrencePattern:
+          $ref: '#/components/schemas/Common.Enums.RecurrencePattern'
+        recurrenceEnd:
+          type: string
+          description: The end of recurrence
+          format: date-time
+          nullable: true
+          example: '2024-05-23T07:11:19Z'
+        description:
+          maxLength: 200
+          type: string
+          description: Detailed description of the meeting
+          nullable: true
+          example: _string1987
+        meetingUrl:
+          type: string
+          description: Meeting URL for google meet
+          format: uri
+          nullable: true
+          example: _string1988
+      additionalProperties: false
+      description: Adding a new meeting
+    DTO.MeetingDto.Edit:
+      required:
+        - endTime
+        - id
+        - startTime
+        - title
+      type: object
+      properties:
+        recurrencePattern:
+          $ref: '#/components/schemas/Common.Enums.RecurrencePattern'
+        recurrenceEnd:
+          type: string
+          description: The end of recurrence
+          format: date-time
+          nullable: true
+          example: '2024-05-23T07:11:19Z'
+        id:
+          type: string
+          description: Identifier
+          example: _string1992
+        title:
+          maxLength: 100
+          type: string
+          description: Meeting title
+          example: _string1993
+        description:
+          maxLength: 200
+          type: string
+          description: Detailed description of the meeting
+          nullable: true
+          example: _string1994
+        meetingUrl:
+          type: string
+          description: Meeting URL for google meet
+          format: uri
+          nullable: true
+          example: _string1995
+        startTime:
+          type: string
+          description: Starting time of the meeting
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+        endTime:
+          type: string
+          description: Ending time of the meeting.
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+      additionalProperties: false
+      description: Editing an existing meeting
+    DTO.MeetingDto.Get:
+      required:
+        - endTime
+        - id
+        - startTime
+        - title
+      type: object
+      properties:
+        title:
+          maxLength: 100
+          type: string
+          description: Meeting title
+          example: _string1996
+        description:
+          maxLength: 200
+          type: string
+          description: Detailed description of the meeting
+          nullable: true
+          example: _string1997
+        meetingUrl:
+          type: string
+          description: Meeting URL for google meet
+          format: uri
+          nullable: true
+          example: _string1998
+        startTime:
+          type: string
+          description: Starting time of the meeting
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+        endTime:
+          type: string
+          description: Ending time of the meeting.
+          format: date-time
+          example: '2024-05-23T07:11:19Z'
+        recurrencePattern:
+          $ref: '#/components/schemas/Common.Enums.RecurrencePattern'
+        recurrenceEnd:
+          type: string
+          description: The end of recurrence
+          format: date-time
+          nullable: true
+          example: '2024-05-23T07:11:19Z'
+        id:
+          type: string
+          description: Identifier
+          example: _string1999
+      additionalProperties: false
+      description: DTO for getting meeting information
+    DTO.RegisterDto.AddTrainer:
+      required:
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
+      type: object
+      properties:
+        lastName:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          example: _string2010
+        firstName:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          example: _string2011
+        email:
+          maxLength: 150
+          minLength: 2
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          type: string
+          format: email
+          example: _string2012
+        club:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[\p{IsCyrillic}0-9\s]+$'
+          type: string
+          nullable: true
+          example: _string2013
+        rank:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[\p{IsCyrillic}0-9\s]+$'
+          type: string
+          nullable: true
+          example: _string2014
+        phoneNumber:
+          maxLength: 10
+          minLength: 10
+          type: string
+          format: tel
+          example: _string2015
+      additionalProperties: false
+    DTO.StudentDto.Add:
+      required:
+        - email
+        - firstName
+        - lastName
+      type: object
+      properties:
+        lastName:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Lastname
+          example: _string2020
+        firstName:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Firstname
+          example: _string2021
+        email:
+          maxLength: 150
+          minLength: 2
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          type: string
+          description: Email
+          format: email
+          example: _string2022
+      additionalProperties: false
+      description: Add object
+    DTO.StudentDto.Edit:
+      required:
+        - email
+        - firstName
+        - lastName
+      type: object
+      properties:
+        lastName:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Lastname
+          example: _string2026
+        firstName:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Firstname
+          example: _string2027
+        email:
+          maxLength: 150
+          minLength: 2
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          type: string
+          description: Email
+          format: email
+          example: _string2028
+        id:
+          type: string
+          description: Id
+          nullable: true
+          example: _string2029
+      additionalProperties: false
+      description: Edit object
+    DTO.StudentDto.Get:
+      required:
+        - email
+        - firstName
+        - lastName
+      type: object
+      properties:
+        lastName:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Lastname
+          example: _string1982
+        firstName:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Firstname
+          example: _string1983
+        email:
+          maxLength: 150
+          minLength: 2
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          type: string
+          description: Email
+          format: email
+          example: _string1984
+        id:
+          type: string
+          description: Id
+          nullable: true
+          example: _string1985
+      additionalProperties: false
+      description: Get object
+    DTO.TrainerDto.Edit:
+      required:
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
+      type: object
+      properties:
+        lastName:
+          maxLength: 64
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Lastname
+          example: _string2041
+        firstName:
+          maxLength: 64
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Firstname
+          example: _string2042
+        email:
+          maxLength: 150
+          minLength: 2
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          type: string
+          description: Email
+          format: email
+          example: _string2043
+        club:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[\p{IsCyrillic}0-9\s]+$'
+          type: string
+          description: Club
+          nullable: true
+          example: _string2044
+        rank:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[\p{IsCyrillic}0-9\s]+$'
+          type: string
+          description: Rank
+          nullable: true
+          example: _string2045
+        phoneNumber:
+          maxLength: 10
+          minLength: 10
+          type: string
+          description: Phone number
+          format: tel
+          example: _string2046
+        id:
+          type: string
+          description: Id
+          nullable: true
+          example: _string2047
+      additionalProperties: false
+    DTO.TrainerDto.Get:
+      required:
+        - email
+        - firstName
+        - lastName
+        - phoneNumber
+      type: object
+      properties:
+        lastName:
+          maxLength: 64
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Lastname
+          example: _string2033
+        firstName:
+          maxLength: 64
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё]*([-''][А-ЯЁ][а-яё]*)?$'
+          type: string
+          description: Firstname
+          example: _string2034
+        email:
+          maxLength: 150
+          minLength: 2
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          type: string
+          description: Email
+          format: email
+          example: _string2035
+        club:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[\p{IsCyrillic}0-9\s]+$'
+          type: string
+          description: Club
+          nullable: true
+          example: _string2036
+        rank:
+          maxLength: 70
+          minLength: 2
+          pattern: '^[\p{IsCyrillic}0-9\s]+$'
+          type: string
+          description: Rank
+          nullable: true
+          example: _string2037
+        phoneNumber:
+          maxLength: 10
+          minLength: 10
+          type: string
+          description: Phone number
+          format: tel
+          example: _string2038
+        id:
+          type: string
+          description: Id
+          nullable: true
+          example: _string2039
+      additionalProperties: false
+      description: Get object
+    DTO.VideoLectureDto.Add:
+      required:
+        - title
+        - url
+      type: object
+      properties:
+        title:
+          maxLength: 100
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё0-9]*([-''][А-ЯЁ][а-яё0-9]*)?$'
+          type: string
+          description: Title of the video lecture
+          example: _string2067
+        url:
+          type: string
+          description: URL of the video lecture
+          format: uri
+          example: _string2068
+      additionalProperties: false
+      description: Add video lecture
+    DTO.VideoLectureGroupDto.Add:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё0-9]*([-''][А-ЯЁ][а-яё0-9]*)?$'
+          type: string
+          description: Name of the video lecture group
+          example: _string2055
+      additionalProperties: false
+      description: Add video lecture group
+    DTO.VideoLectureGroupDto.Edit:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё0-9]*([-''][А-ЯЁ][а-яё0-9]*)?$'
+          type: string
+          description: Name of the video lecture group
+          example: _string2059
+        id:
+          type: string
+          description: Id of the video lecture group
+          nullable: true
+          example: _string2060
+      additionalProperties: false
+      description: Edit video lecture group
+    DTO.VideoLectureGroupDto.Get:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          maxLength: 100
+          minLength: 2
+          pattern: '^[А-ЯЁ][а-яё0-9]*([-''][А-ЯЁ][а-яё0-9]*)?$'
+          type: string
+          description: Name of the video lecture group
+          example: _string2062
+        id:
+          type: string
+          description: Id of the video lecture group
+          nullable: true
+          example: _string2063
+      additionalProperties: false
+      description: Get video lecture group
+  securitySchemes:
+    bearer:
+      type: apiKey
+      description: Please enter JWT with Bearer into field
+      name: Authorization
+      in: header
+security:
+  - bearer: [ ]
