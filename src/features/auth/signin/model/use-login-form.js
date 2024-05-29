@@ -3,11 +3,10 @@ import {
   useLazyDataQuery,
   useLoginMutation,
 } from "@/entities/auth";
-import { DTOAuthDtoLogin } from "@/shared/api/generated";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-const initvalue: DTOAuthDtoLogin = {
+const initvalue = {
   userName: "",
   password: "",
 };
@@ -20,7 +19,7 @@ export const useLoginForm = () => {
     defaultValues: initvalue,
   });
 
-  const handleLogin = async (data: DTOAuthDtoLogin) => {
+  const handleLogin = async (data) => {
     const res = await login(data);
     if (res.data) {
       dispatch(setCredentials(res.data));

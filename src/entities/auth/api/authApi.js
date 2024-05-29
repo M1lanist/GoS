@@ -1,9 +1,8 @@
 import { apiSlice } from "@/app/api/instance";
-import { DTOAuthDtoLogin, DTOAuthDtoResponse } from "@/shared/api/generated";
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<DTOAuthDtoResponse, DTOAuthDtoLogin>({
+    login: builder.mutation({
       query: (credentials) => ({
         url: "/Auth/Access",
         method: "POST",
@@ -11,7 +10,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     Data: builder.query({
-      query: (creasd) => ({
+      query: () => ({
         url: "/Students",
         method: "GET",
       }),
