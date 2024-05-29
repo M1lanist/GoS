@@ -5,7 +5,7 @@ import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://go-school-api-dev.timelyskills.com/api",
   credentials: "include",
-  prepareHeaders: (headers, { getState }) => {
+  prepareHeaders: (headers) => {
     const token = localStorage.getItem("accessToken");
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
@@ -33,5 +33,5 @@ const baseQueryWithReauth = async (args, api, exrtraOptions) => {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  endpoints: (builder) => ({}),
+  endpoints: () => ({}),
 });
