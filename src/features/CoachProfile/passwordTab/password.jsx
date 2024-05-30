@@ -18,28 +18,28 @@ const PasswordTab = () => {
 
 
       <PasswordInput
-        className='border-solid border border-gray-600 rounded-lg border-neutral-300 h-14 p-4 mb-4'
+        className='border-solid border rounded-lg border-neutral-300 h-14 p-4 mb-4'
         // type={showPassword ? 'text' : 'password'} // Изменяем тип ввода в зависимости от состояния showPassword
         placeholder='Введите старый пароль'
         value={oldPassword}
         onChange={(e) => setOldPassword(e.target.value)}
       />
       <PasswordInput
-        className='border-solid border border-gray-600 rounded-lg border-neutral-300 h-14 p-4 mb-4'
+        className='border-solid border  rounded-lg border-neutral-300 h-14 p-4 mb-4'
         // type={showPassword ? 'text' : 'password'}
         placeholder='Новый пароль'
         value={newPassword}
         onChange={(e) => setNewPassword(e.target.value)}
       />
       <PasswordInput
-        className='border-solid border border-gray-600 rounded-lg border-neutral-300 h-14 p-4 mb-8'
+        className='border-solid border  rounded-lg border-neutral-300 h-14 p-4 mb-8'
         // type={showPassword ? 'text' : 'password'}
         placeholder='Повторите пароль' 
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
      
-     <UiButton text={'Сменить пароль'}/>
+     <UiButton className='w-[195px] h-[48px] py-3.5 px-8 text-[16px] bg-[rgb(222,219,255)] text-black rounded-md font-poppins grid gap-2.5' text={'Сменить пароль'}/>
     </div>
   );
 };

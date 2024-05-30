@@ -12,11 +12,12 @@ const ProfileTab = () => {
     <div className='flex items-start '>
       <div className='mr-8 flex flex-col items-center'>
       <img className='w-36' src='https://static.vecteezy.com/system/resources/previews/000/366/953/original/edit-profile-vector-icon.jpg' alt="" />
-      <button className='text-sm text-purple-500 hover:underline'>Изменить</button>
+      <button className='text-sm text-[rgba(99,83,154)] hover:underline leading-4 pt-2 '>Изменить</button>
+
       </div>
-      <div className='flex flex-col space-y-4 w-9/12'>
+      <div className='flex flex-col space-y-2 w-9/12'>
         <Input
-          className='border-solid border border-gray-600 rounded-lg border-neutral-300 h-14 p-4'
+          className='border-solid border  rounded-lg border-neutral-300 h-14 p-4'
           type="text"
           placeholder='Адрес эл.почты'
           value={email}
@@ -24,28 +25,28 @@ const ProfileTab = () => {
         />
           
         <Input
-          className='border-solid border border-gray-600 rounded-lg border-neutral-300 h-14 p-4'
+          className='border-solid border  rounded-lg border-neutral-300 h-14 p-4'
           type="text"
           placeholder='Имя'
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <Input
-          className='border-solid border border-gray-600 rounded-lg border-neutral-300 h-14 p-4'
+          className='border-solid border  rounded-lg border-neutral-300 h-14 p-4'
           type="text"
           placeholder='Фамилия'
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
         <Input
-          className='border-solid border border-gray-600 rounded-lg border-neutral-300 h-14 p-4'
+          className='border-solid border  rounded-lg border-neutral-300 h-14 p-4'
           type="text"
           placeholder='Номер телефона'
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
         <Input
-          className='border-solid border border-gray-600 rounded-lg border-neutral-300 h-14 p-4'
+          className='border-solid border  rounded-lg border-neutral-300 h-14 p-4'
           type="text"
           placeholder='Ваш ранг: '
           value={rank}
