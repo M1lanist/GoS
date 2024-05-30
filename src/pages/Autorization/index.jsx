@@ -1,6 +1,10 @@
+import { LoginForm } from "@/features/auth/signin";
+
 const Autorization = () => {
   return (
-    <div>autorization</div>
-  )
-}
-export default Autorization
+    <div>
+      <LoginForm />
+    </div>
+  );
+};
+export default Autorization;
