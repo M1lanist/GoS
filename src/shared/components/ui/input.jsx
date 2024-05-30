@@ -6,7 +6,7 @@ import { CircleX } from "lucide-react";
 const Input = React.forwardRef(({suffix, className, type, errorMessage, ...props }, ref) => {
   return (
     <>
-    <div className="relative w-full justify-between gap-2 items-center">
+    <div className="relative w-full justify-between gap-0 items-center">
       <input
       placeholder=""
         type={type}
