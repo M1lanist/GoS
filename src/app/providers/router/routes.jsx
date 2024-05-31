@@ -1,111 +1,61 @@
-import MainPage from "../../../pages/MainPage";
-import Autorization from "../../../pages/Autorization";
-import { createBrowserRouter } from "react-router-dom";
-import ErrorPage from "../../../pages/ErrorPage";
-import ProfilePage from "@/pages/ProfilePage";
-import MyClassPage from "@/pages/MyClassPage";
-import BoardPage from "@/pages/BoardPage";
-import SchedulePage from "@/pages/SchedulePage";
-import LecturesPage from "@/pages/LecturesPage";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainPage from "../../../pages/MainPage/index";
+import Autorization from "../../../pages/Autorization/index";
+import ErrorPage from "../../../pages/ErrorPage/index";
+import ProfilePage from "../../../pages/ProfilePage/index";
+import MyClassPage from "../../../pages/MyClassPage/index";
+import BoardPage from "../../../pages/BoardPage/index";
+import SchedulePage from "../../../pages/SchedulePage/index";
+import LecturesPage from "../../../pages/LecturesPage/index";
 
-
-
-const role = 'coach';
-
-// ! Я не стал писать запрос на users так как state manager еще не готов, иначе мне бы пришлось писать запрос в этом файле 
-
+const role = "coach"; 
 
 const adminRoutes = [
-  {
-            path: "/",
-            element: <MainPage />,
-            errorElement: <ErrorPage />,
-          },
-          {
-            path: "/login",
-            element: <Autorization />,
-          },
-          {
-            path: "/myprofile",
-            element: <ProfilePage />,
-          },
-          {
-            path: "/myclass",
-            element: <MyClassPage />,
-          },
-          {
-            path: "/board",
-            element: <BoardPage />,
-          },
-          {
-            path: "/schedule",
-            element: <SchedulePage />,
-          },
-          {
-            path: "/lectures",
-            element: <LecturesPage />,
-          },
-]
+  { path: "/", element: <MainPage />, errorElement: <ErrorPage /> },
+  { path: "/login", element: <Autorization /> },
+  { path: "/myprofile", element: <ProfilePage /> },
+  { path: "/myclass", element: <MyClassPage /> },
+  { path: "/board", element: <BoardPage /> },
+  { path: "/schedule", element: <SchedulePage /> },
+  { path: "/lectures", element: <LecturesPage /> },
+];
+
 const coachRoutes = [
-  {
-            path: "/",
-            element: <MainPage />,
-            errorElement: <ErrorPage />,
-          },
-          {
-            path: "/login",
-            element: <Autorization />,
-          },
-          {
-            path: "/myprofile",
-            element: <ProfilePage />,
-          },
-          {
-            path: "/myclass",
-            element: <MyClassPage />,
-          },
-          // {
-          //   path: "/board",
-          //   element: <BoardPage />,
-          // },
-          // {
-          //   path: "/schedule",
-          //   element: <SchedulePage />,
-          // },
-          // {
-          //   path: "/lectures",
-          //   element: <LecturesPage />,
-          // },  
-          // ? В таске не указано к каким маршрутам есть доступ у студента и тренера, поэтому я оставил маршруты на свое усмотрение
-]
+  { path: "/", element: <MainPage />, errorElement: <ErrorPage /> },
+  { path: "/login", element: <Autorization /> },
+  { path: "/myprofile", element: <ProfilePage /> },
+  { path: "/myclass", element: <MyClassPage /> },
+  { path: "/board", element: <BoardPage /> },
+  { path: "/schedule", element: <SchedulePage /> },
+  { path: "/lectures", element: <LecturesPage /> },
+];
+
 const studRoutes = [
-  {
-            path: "/",
-            element: <MainPage />,
-            errorElement: <ErrorPage />,
-          },
-          {
-            path: "/login",
-            element: <Autorization />,
-          },
-          {
-            path: "/myprofile",
-            element: <ProfilePage />,
-          },
-      
-  
-]
+  { path: "/", element: <MainPage />, errorElement: <ErrorPage /> },
+  { path: "/login", element: <Autorization /> },
+  { path: "/myprofile", element: <ProfilePage /> },
+];
 
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        {role === "admin" &&
+          adminRoutes.map((route, index) => (
+            <Route key={index} {...route} />
+          ))}
+        {role === "student" &&
+          studRoutes.map((route, index) => (
+            <Route key={index} {...route} />
+          ))}
+        {role === "coach" &&
+          coachRoutes.map((route, index) => (
+            <Route key={index} {...route} />
+          ))}
+      </Routes>
+    </Router>
+  );
+};
 
-const routes = createBrowserRouter([
-  {
-    path: '/',
-    children: role === 'admin' ? adminRoutes : (role === 'student' ? studRoutes : coachRoutes),
-  },
-]);
-
-
-
-
-
-export default routes;
+export default App;
