@@ -1,25 +1,24 @@
-import { RouterProvider } from "react-router-dom";
+import React from 'react';
+import { Provider } from 'react-redux'; 
+import { BrowserRouter } from "react-router-dom";
 import routes from "./providers/router/routes";
-import "./globals.css";
-// import Headline1 from "../../shared/ui/ui-header/ui-typography/ui-typography";
-import Sidebar from "../widgets/Sidebar";
-import UiSidebar from "../shared/ui/ui-sidebar/ui-sidebar";
-import UiNotification from "@/shared/ui/ui-notification/ui-notification";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
+import './globals.css';
+import { store } from './store/store'; 
+import Sidebar from '../widgets/Sidebar';
+import Authorization from "@/pages/Autorization";
+import UiSidebar from '@/shared/ui/ui-sidebar/ui-sidebar';
+
 
 function App() {
   return (
-    <Provider store={store}>
-      <div className="flex">
-        <div className="flex w-screen">
-          <Sidebar>
-            <UiSidebar />
-          </Sidebar>
-          <RouterProvider router={routes} />
-        </div>
-      </div>
-    </Provider>
+    <div className="flex-center ">
+      {/* <Sidebar/> */}
+      <Provider store={store}> 
+        <BrowserRouter> 
+          <Authorization />
+        </BrowserRouter>
+      </Provider>
+    </div>
   );
 }
 
