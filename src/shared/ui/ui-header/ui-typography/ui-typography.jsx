@@ -1,6 +1,7 @@
 import { cn } from "@/shared/utils";
 
 
+
 const Headline1 = ({ className, variant, children }) => {
   return (
     <h1

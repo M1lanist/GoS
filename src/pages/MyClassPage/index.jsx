@@ -1,6 +1,8 @@
 
 
 const MyClassPage = () => {
+  
+
   return (
     <div className="MyClassPage m-20 flex-1">
         <div className="mb-4 flex justify-between">
@@ -109,4 +111,4 @@ const MyClassPage = () => {
   )
 }
 
-export default MyClassPage
+export default MyClassPage;
