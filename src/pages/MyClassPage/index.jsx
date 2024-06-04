@@ -1,72 +1,114 @@
-import React, { useState } from 'react'
-import { Globe,Bell, EllipsisVertical, Circle } from 'lucide-react';
-import UiButton from '@/shared/ui/ui-button/ui-button';
-import Headline1 from '@/shared/ui/ui-header/ui-typography/ui-typography';
-import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar';
+
 
 const MyClassPage = () => {
-
-  const [notification, setNotification] = useState(false)
-  const progress = 74
   
 
   return (
-    <div className='w-screen bg-[rgb(244,244,244)]  font-poppins'>
-      <div className='flex w-11/12  justify-end m-auto mb-6  mt-8 items-center'>
-        <UiButton className = 'bg-[rgb(222,219,255)] text-black w-[154px] h-[40px] text-[14px]' text={'Создать группу'}/>
-          <Globe className='flex ml-4 text-black ' />
-         <Bell className='flex ml-4 text-black'  />
-      </div>
-
-      
-      <div className='rounded-lg w-11/12 m-auto h-5/6 bg-white'>
-        <div className='w-1/3  rounded-lg bg-[rgb(253,253,253,1)] border border-neutral-300 shadow-md p-0'>
-          <div className='flex ml-2 justify-between items-center'>
-            <Headline1 className="text-black" variant="h4">Group 1</Headline1>
-            <div className='flex'>
-              <div className={`flex ${notification ? 'bg-purple-200' : 'bg-[rgb(250,250,250,1)]'} rounded-full p-2 inline-block relative`}>
-                <Bell className='  text-black'/>
-                {notification && <div className="w-3 h-3 bg-[rgb(239,116,116,1)] rounded-full absolute top-0 right-0 -mt-0 -mr-0"></div>}
+    <div className="MyClassPage m-20 flex-1">
+        <div className="mb-4 flex justify-between">
+            <div className="relative flex items-center">
+              <div className="absolute inset-y-4 start-0 flex items-center ps-4 pointer-events-none">
+                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
               </div>
-              <div className='flex bg-[rgb(250,250,250,1)] rounded-full p-2 inline-block'>
-                <EllipsisVertical className='text-black'/>
-              </div>
+              <input type="search" id="search" className="block w-md p-3 ps-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Поиск студента" required />
             </div>
+            <button type="button" className="text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">
+              + Добавить студента </button>
           </div>
-          <div className='ml-2'>
-              <Headline1 className="text-neutral-700" variant="body2">Успеваемость:{progress}%</Headline1>
-          </div>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsf9_HVWBJ9uLLRKi2e9DnStvEzRgFI1l_Sw&s" alt="" />
 
-          <div className='flex justify-between items-end ml-2'>
-            <Headline1 className="text-neutral-700" variant="body2">Ученики:{progress}</Headline1>
-            <div className='mt-3 flex -space-x-6 overflow-hidden'>
-              <Avatar>
-                <AvatarImage className="inline-block h-9 w-9 rounded-full ring-1 ring-white" src="https://cs12.pikabu.ru/post_img/big/2021/06/14/8/1623673511141489136.jpg" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <Avatar>
-                <AvatarImage className="inline-block h-9 w-9 rounded-full ring-1 ring-white" src="https://fotobase.co/files/img/photo/krutye-na-avu-anime/krutye-na-avu-anime-11.webp"/>
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <Avatar>
-                <AvatarImage className="inline-block h-9 w-9 rounded-full ring-1 ring-white" src="https://cs12.pikabu.ru/post_img/big/2021/06/14/8/1623673511141489136.jpg" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <Avatar>
-                <AvatarImage className="inline-block h-9 w-9 rounded-full ring-1 ring-white" src="https://fotobase.co/files/img/photo/krutye-na-avu-anime/krutye-na-avu-anime-11.webp"/>
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <Avatar>
-                <AvatarImage className="inline-block h-9 w-9 rounded-full ring-1 ring-white" src="https://cs12.pikabu.ru/post_img/big/2021/06/14/8/1623673511141489136.jpg" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-            </div>
-          </div>
-        </div>
+          {/* =================== TABLE ========================================================= */}
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-md text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                      <th scope="col" className="px-6 py-5">
+                          №
+                      </th>
+                      <th scope="col" className="px-6 py-5">
+                          Имя
+                      </th>
+                      <th scope="col" className="px-6 py-5">
+                          Ранг
+                      </th>
+                      <th scope="col" className="px-6 py-5">
+                          Группа
+                      </th>
+                      <th scope="col" className="px-6 py-5">
+                          E-mail
+                      </th>
+                      <th scope="col" className="px-6 py-5">
+                          Действия
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                      <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          1.
+                      </th>
+                      <td className="px-6 py-4">
+                          Taira Isakova
+                      </td>
+                      <td className="px-6 py-4">
+                          90
+                      </td>
+                      <td className="px-6 py-4">
+                          CS-11
+                      </td>
+                      <td className="px-6 py-4">
+                          taira@gmail.com
+                      </td>
+                      <td className="px-6 py-4">
+                          <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                      </td>
+                  </tr>
+                  <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                      <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          2.
+                      </th>
+                      <td className="px-6 py-4">
+                          Timofey Tian
+                      </td>
+                      <td className="px-6 py-4">
+                          95
+                      </td>
+                      <td className="px-6 py-4">
+                          CS-12
+                      </td>
+                      <td className="px-6 py-4">
+                          tima@gmail.com
+                      </td>
+                      <td className="px-6 py-4">
+                          <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                      </td>
+                  </tr>
+                  <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                      <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          3.
+                      </th>
+                      <td className="px-6 py-4">
+                          Boris Shinko
+                      </td>
+                      <td className="px-6 py-4">
+                          100
+                      </td>
+                      <td className="px-6 py-4">
+                          CS-12
+                      </td>
+                      <td className="px-6 py-4">
+                          boris@gmail.com
+                      </td>
+                      <td className="px-6 py-4">
+                          <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                      </td>
+                  </tr>            
+              </tbody>
+          </table>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default MyClassPage;
