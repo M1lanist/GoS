@@ -1,20 +1,24 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainPage from "../../../pages/MainPage/index";
-import Autorization from "../../../pages/Autorization/index";
-import ErrorPage from "../../../pages/ErrorPage/index";
-import ProfilePage from "../../../pages/ProfilePage/index";
-import MyClassPage from "../../../pages/MyClassPage/index";
-import BoardPage from "../../../pages/BoardPage/index";
-import SchedulePage from "../../../pages/SchedulePage/index";
-import LecturesPage from "../../../pages/LecturesPage/index";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
-const role = "coach"; 
+import Autorization from "../../../pages/Autorization/index";
+import BoardPage from "../../../pages/BoardPage/index";
+import ErrorPage from "../../../pages/ErrorPage/index";
+import { Layout } from "@/widgets/Layout/Layout";
+import LecturesPage from "../../../pages/LecturesPage/index";
+import MainPage from "../../../pages/MainPage/index";
+import MyClassPage from "../../../pages/MyClassPage/index";
+import ProfilePage from "../../../pages/ProfilePage/index";
+import React from "react";
+import SchedulePage from "../../../pages/SchedulePage/index";
+import { useSelector } from "react-redux";
+
+const withSidebarAdminRoutes = [
+  { path: "/", element: <MainPage />, errorElement: <ErrorPage /> },
+  { path: "/myprofile", element: <ProfilePage /> },
+];
 
 const adminRoutes = [
-  { path: "/", element: <MainPage />, errorElement: <ErrorPage /> },
-  { path: "/login", element: <Autorization /> },
-  { path: "/myprofile", element: <ProfilePage /> },
+  // { path: "/", element: <MainPage />, errorElement: <ErrorPage /> },
   { path: "/myclass", element: <MyClassPage /> },
   { path: "/board", element: <BoardPage /> },
   { path: "/schedule", element: <SchedulePage /> },
@@ -23,7 +27,6 @@ const adminRoutes = [
 
 const coachRoutes = [
   { path: "/", element: <MainPage />, errorElement: <ErrorPage /> },
-  { path: "/login", element: <Autorization /> },
   { path: "/myprofile", element: <ProfilePage /> },
   { path: "/myclass", element: <MyClassPage /> },
   { path: "/board", element: <BoardPage /> },
@@ -33,29 +36,35 @@ const coachRoutes = [
 
 const studRoutes = [
   { path: "/", element: <MainPage />, errorElement: <ErrorPage /> },
-  { path: "/login", element: <Autorization /> },
   { path: "/myprofile", element: <ProfilePage /> },
 ];
 
-const App = () => {
+const AppRouter = () => {
+  const userRoles = useSelector((store) => store.auth.roleNames);
+  console.log(userRoles);
   return (
-    <Router>
-      <Routes>
-        {role === "admin" &&
-          adminRoutes.map((route, index) => (
-            <Route key={index} {...route} />
-          ))}
-        {role === "student" &&
-          studRoutes.map((route, index) => (
-            <Route key={index} {...route} />
-          ))}
-        {role === "coach" &&
-          coachRoutes.map((route, index) => (
-            <Route key={index} {...route} />
-          ))}
-      </Routes>
-    </Router>
+    <div style={{ flex: "1" }}>
+      <Router>
+        <Routes>
+          {userRoles?.includes("Admin") &&
+            adminRoutes.map((route, index) => <Route key={index} {...route} />)}
+          {userRoles?.includes("stutend") &&
+            studRoutes.map((route, index) => <Route key={index} {...route} />)}
+
+            
+          {userRoles?.includes("coach") &&
+            coachRoutes.map((route, index) => <Route key={index} {...route} />)}
+          <Route element={<Layout />}>
+            {userRoles?.includes("Admin") &&
+              withSidebarAdminRoutes.map((route, index) => (
+                <Route key={index} {...route} />
+              ))}
+          </Route>
+          <Route path="/login" element={<Autorization />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 
-export default App;
+export default AppRouter;
