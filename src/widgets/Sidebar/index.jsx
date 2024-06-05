@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import UiSidebar, { SidebarItem } from '../../shared/ui/ui-sidebar/ui-sidebar';
 import '../../app/globals.css';
-import { Milestone, UsersRound, CalendarDays, BarChart3, UserCircle, Home, Book, NotebookPen, CalendarCheck, LayoutDashboard, UserRound, LogOut } from 'lucide-react'; // Удалили один из импортов LayoutDashboard
+
+import { BarChart3, Book, CalendarCheck, CalendarDays, Home, LayoutDashboard, LogOut, Milestone, NotebookPen, UserCircle, UserRound, UsersRound } from 'lucide-react'; // Удалили один из импортов LayoutDashboard
+import { Link, BrowserRouter as Router } from 'react-router-dom';
+import React, { useState } from 'react';
+import UiSidebar, { SidebarItem } from '../../shared/ui/ui-sidebar/ui-sidebar';
 
 function Sidebar() {
   const [activeItem, setActiveItem] = useState(null);
 
   return (
-    <Router>
       <div>
         <UiSidebar>
           <SidebarItem
             icon={<Home className="text-black" />}  
-            text={<Link to="/Frontend/src/pages/MainPage/index.jsx" className="no-decoration">Главная</Link>} 
+            text={<Link to="/" className="no-decoration">Главная</Link>} 
             active={activeItem === 'mainpage'} 
             onClick={() => setActiveItem('mainpage')} 
           />
@@ -64,7 +64,6 @@ function Sidebar() {
           />
         </UiSidebar>
       </div>
-    </Router>
   );
 }
 

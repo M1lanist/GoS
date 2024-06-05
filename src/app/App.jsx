@@ -1,23 +1,24 @@
+import './globals.css';
+
+import AppRouter from "./providers/router/routes";
 import { RouterProvider } from "react-router-dom";
-import routes from "./providers/router/routes"; 
-import './globals.css'; 
+import Sidebar from '../widgets/Sidebar';
+import UiSidebar from '../shared/ui/ui-sidebar/ui-sidebar';
+import routes from "./providers/router/routes";
+
 // import Headline1 from "../../shared/ui/ui-header/ui-typography/ui-typography";
-import Sidebar from '../widgets/Sidebar'; 
-import UiSidebar from '../shared/ui/ui-sidebar/ui-sidebar'; 
+
+
+
 // import UiNotification from "@/shared/ui/ui-notification/ui-notification";
 
 function App() {
   return (
     <div className="flex">
-      
-       <Sidebar>
+       {/* <Sidebar>
         <UiSidebar/>
-       </Sidebar>
-       <RouterProvider router={routes} />
-
-      
- 
-     
+       </Sidebar> */}
+       <AppRouter/>
      </div>
   );
 }
