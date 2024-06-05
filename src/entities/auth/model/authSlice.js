@@ -1,20 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
     accessToken: null,
     accessTokenExpireDate: "",
     refreshToken: null,
-    roleNames: null,
+    roleNames: ["guest"],
     userName: null,
     refreshTokenExpireDate: "",
   },
   reducers: {
     setCredentials: (state, action) => {
-      localStorage.setItem('accessToken', action.payload.accessToken)
-      localStorage.setItem('refreshToken', action.payload.refreshToken)
+      localStorage.setItem("accessToken", action.payload.accessToken);
+      localStorage.setItem("refreshToken", action.payload.refreshToken);
       state.accessToken = action.payload.accessToken;
       state.accessTokenExpireDate = action.payload.accessTokenExpireDate;
       state.refreshTokenExpireDate = action.payload.refreshTokenExpireDate;
@@ -26,7 +25,7 @@ export const authSlice = createSlice({
       state.accessToken = null;
       state.accessTokenExpireDate = "";
       state.refreshToken = null;
-      state.roleNames = null;
+      state.roleNames = ["guest"];
       state.userName = null;
       state.refreshTokenExpireDate = "";
     },
