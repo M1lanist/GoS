@@ -53,7 +53,7 @@ const routes = [
   {
     path: "/login",
     element: <Autorization />,
-    roles: ["guest", "Admin", "Coach"],
+    roles: ["Guest", "Admin", "Coach"],
     layout: "public",
   },
 ];

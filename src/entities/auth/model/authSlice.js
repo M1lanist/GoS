@@ -6,7 +6,7 @@ export const authSlice = createSlice({
     accessToken: null,
     accessTokenExpireDate: "",
     refreshToken: null,
-    roleNames: ["guest"],
+    roleNames: ["Guest"],
     userName: null,
     refreshTokenExpireDate: "",
   },
