@@ -5,10 +5,10 @@ import React, { useState } from 'react';
 
 const GoAccountTab = () => {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
-  const [selectedServer, setSelectedServer] = useState(''); 
-  const [username, setUsername] = useState(''); 
-  const [rank, setRank] = useState(''); 
-  const [newField, setNewField] = useState(''); 
+  const [selectedServer, setSelectedServer] = useState(''); // Новое состояние
+  const [username, setUsername] = useState(''); // Новое состояние
+  const [rank, setRank] = useState(''); // Новое состояние
+  const [newField, setNewField] = useState(''); // Новое состояние
 
   const handlePencilClick = () => {
     setShowAdditionalFields(!showAdditionalFields);
@@ -36,11 +36,11 @@ const GoAccountTab = () => {
         />
         <div className='absolute inset-y-0 right-0 flex items-center space-x-2 pr-2'>
           <Pencil 
-            className=' text-black cursor-pointer w-[24px] h-[24px]' 
+            className='w-4 h-4 text-black cursor-pointer w-[24px] h-[24px]' 
             onClick={handlePencilClick}
           />
           <Trash2 
-            className=' text-black cursor-pointer w-[24px] h-[24px]' 
+            className='w-4 h-4 text-black cursor-pointer w-[24px] h-[24px]' 
             onClick={handleTrashClick} // Добавлено
           />
         </div>
@@ -79,11 +79,11 @@ const GoAccountTab = () => {
       <div className='flex mt-8 space-x-4'>
         <UiButton 
           text='Добавить еще' 
-          className='bg-[rgb(222,219,255)] text-black w-[177px] h-[48px] text-[16px]  py-3.5 px-8 font-sans font-normal leading-[20px]' 
+          className='bg-[rgb(222,219,255)] text-black w-[177px] h-[48px] text-[16px]' 
         />
         <UiButton 
           text='Сохранить изменения' 
-          className='bg-[rgb(222,219,255)] text-black w-[241px] h-[48px] text-[16px] py-3.5 px-8 font-sans font-normal leading-[20px]' 
+          className='bg-[rgb(222,219,255)] text-black w-[177px] h-[48px] text-[16px]' 
         />
       </div>
     </div>

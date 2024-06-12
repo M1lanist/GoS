@@ -5,17 +5,17 @@
 }
 
 .button {
-    width: 154px;
-    height: 64px;
+    // width: 195px;
+    // height: 48px;
     color: #FFFFFF;
     font-family: 'Nunito Sans', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
     border-radius: 4px;
-    background-color: #7B61FF;
+    background-color: #A854C8;
     border: none;
 }
 .button:hover{
@@ -28,17 +28,17 @@
     border: 2px solid #F845FC;
 }
 
-.disabledButton{
-    width: 114px;
-    height: 64px;
-    color: #C5C0DB;
-    font-family: 'Nunito Sans', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 400;
-    border-radius: 4px;
-    background-color: #F4F3FE;
-    border: none;
-}
+// .disabledButton{
+//     width: 114px;
+//     height: 64px;
+//     color: #C5C0DB;
+//     font-family: 'Nunito Sans', sans-serif;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-size: 20px;
+//     font-weight: 400;
+//     border-radius: 4px;
+//     background-color: #F4F3FE;
+//     border: none;
+// }
